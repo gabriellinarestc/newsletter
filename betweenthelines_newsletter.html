@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BetweenTheLines — Q3 2025 · TangoCode</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#FFF8F0;font-family:'Plus Jakarta Sans',sans-serif}
+#root{width:100%;height:100%}
+button{cursor:pointer;font-family:inherit}
+@keyframes pop{0%{transform:scale(0.92);opacity:0}100%{transform:scale(1);opacity:1}}
+.slide-in{animation:pop 0.22s cubic-bezier(0.34,1.56,0.64,1) both}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script>
+const {useState,useEffect,useCallback,createElement:h}=React;
+
+const C={
+  o:"#F5761A", t:"#0D8F87", pk:"#E8547A", y:"#F5C518", g:"#22D3A5", p:"#A78BFA",
+  bg:"#FFF8F0", bg2:"#FFFFFF", bg3:"#FFF0E0",
+  ink:"#1C1008", ink2:"#7A5C48", ink3:"#B89880",
+  peach:"#FFE8D6", mint:"#D5F2EF", lemon:"#FEF5CC",
+  border:"rgba(28,16,8,0.09)"
+};
+const fh="'Fraunces',serif";
+const fb="'Plus Jakarta Sans',sans-serif";
+const fm="'JetBrains Mono',monospace";
+const TOTAL=19;
+
+// Photo placeholder — now big and colorful
+function Ph({label,h:ht,accent,radius}){
+  accent=accent||C.o;
+  return h("div",{style:{
+    height:ht||220, borderRadius:radius||14, overflow:"hidden", flexShrink:0, position:"relative",
+    background:"linear-gradient(135deg,"+accent+"22 0%,"+accent+"08 100%)",
+    border:"2px dashed "+accent+"50",
+    display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:8
+  }},
+    h("div",{style:{fontSize:36}},"📸"),
+    h("div",{style:{fontSize:12,fontFamily:fm,color:accent,fontWeight:700,textAlign:"center",padding:"0 12px",opacity:0.7,lineHeight:1.4}},label||"PHOTO")
+  );
+}
+
+// Big section label pill
+function SLabel({n,label,col}){
+  col=col||C.o;
+  return h("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:10}},
+    h("div",{style:{background:col,color:"#fff",fontFamily:fm,fontWeight:700,fontSize:10,padding:"3px 10px",borderRadius:100,letterSpacing:1}},"§"+n),
+    h("div",{style:{fontFamily:fm,fontSize:10,color:C.ink3,letterSpacing:2,textTransform:"uppercase"}},label)
+  );
+}
+
+// Decorative wavy line
+function Wave({col}){
+  col=col||C.o;
+  return h("svg",{width:"80",height:"12",viewBox:"0 0 80 12",style:{display:"block",margin:"8px 0"}},
+    h("path",{d:"M0 6 Q10 0 20 6 Q30 12 40 6 Q50 0 60 6 Q70 12 80 6",fill:"none",stroke:col,strokeWidth:"2.5",strokeLinecap:"round"})
+  );
+}
+
+// ── SLIDE 0: COVER ──────────────────────────────────────────────
+function SlideCover(){
+  return h("div",{style:{flex:1,display:"flex",background:C.bg,position:"relative",overflow:"hidden"}},
+    // left big color block
+    h("div",{style:{width:"42%",background:C.o,display:"flex",flexDirection:"column",justifyContent:"center",padding:"40px 36px",position:"relative",overflow:"hidden"}}),
+    // decorative circles
+    h("div",{style:{position:"absolute",left:-60,top:-60,width:260,height:260,borderRadius:"50%",background:"rgba(255,255,255,0.12)"}}),
+    h("div",{style:{position:"absolute",left:40,bottom:-80,width:200,height:200,borderRadius:"50%",background:"rgba(0,0,0,0.07)"}}),
+    // right content
+    h("div",{style:{flex:1,display:"flex",flexDirection:"column",justifyContent:"center",padding:"40px 44px 40px 52px"}}),
+    // overlay centered content
+    h("div",{style:{position:"absolute",inset:0,display:"flex",alignItems:"stretch"}}),
+    h("div",{style:{position:"absolute",inset:0,display:"flex"}}),
+    // actual layout
+    h("div",{style:{position:"absolute",inset:0,display:"flex",alignItems:"center"}}),
+    // rebuilt cleanly:
+    h("div",{style:{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",gap:0}}),
+    h("div",{style:{position:"absolute",left:0,top:0,width:"44%",height:"100%",background:C.o,display:"flex",flexDirection:"column",justifyContent:"flex-end",padding:36,overflow:"hidden"}}),
+    h("div",{style:{position:"absolute",left:0,top:0,width:"44%",height:"100%",display:"flex",flexDirection:"column",justifyContent:"flex-end",padding:36,zIndex:2}}),
+    h("div",{style:{position:"absolute",left:"44%",right:0,top:0,bottom:0,display:"flex",flexDirection:"column",justifyContent:"center",padding:"44px 48px",zIndex:2}}),
+    // decorative circles on orange
+    h("div",{style:{position:"absolute",left:-80,top:-80,width:280,height:280,borderRadius:"50%",background:"rgba(255,255,255,0.1)",zIndex:1}}),
+    h("div",{style:{position:"absolute",left:60,bottom:-100,width:240,height:240,borderRadius:"50%",background:"rgba(0,0,0,0.08)",zIndex:1}}),
+    h("div",{style:{position:"absolute",right:-40,top:"30%",width:120,height:120,borderRadius:"50%",background:C.t+"30",zIndex:1}}),
+
+    // Left orange panel text
+    h("div",{style:{position:"absolute",left:0,top:0,width:"44%",height:"100%",background:C.o,zIndex:0}}),
+    h("div",{style:{position:"absolute",left:0,top:0,width:"44%",height:"100%",display:"flex",flexDirection:"column",justifyContent:"flex-end",padding:36,zIndex:3,gap:6}}),
+    h("div",{style:{position:"absolute",left:28,bottom:36,zIndex:3}}),
+    h("div",{style:{position:"absolute",left:28,bottom:32,zIndex:3,display:"flex",flexDirection:"column",gap:4}}),
+
+    // right side dots
+    h("div",{style:{position:"absolute",right:28,top:28,zIndex:3,display:"grid",gridTemplateColumns:"repeat(5,8px)",gap:5}}),
+    ...Array.from({length:20}).map((_,i)=>h("div",{key:i,style:{width:6,height:6,borderRadius:"50%",background:C.o+"40",position:"absolute",left:28+(i%5)*18,top:28+Math.floor(i/5)*18,zIndex:3}})),
+
+    // CENTER PIECE — the real content
+    h("div",{style:{position:"absolute",inset:0,display:"flex",zIndex:4}}),
+    h("div",{style:{position:"absolute",left:0,top:0,width:"44%",height:"100%",background:C.o,zIndex:2}}),
+    // circles on orange side
+    h("div",{style:{position:"absolute",left:-70,top:-70,width:260,height:260,borderRadius:"50%",background:"rgba(255,255,255,0.12)",zIndex:3}}),
+    h("div",{style:{position:"absolute",left:50,bottom:-80,width:210,height:210,borderRadius:"50%",background:"rgba(0,0,0,0.09)",zIndex:3}}),
+    // orange panel badge + label
+    h("div",{style:{position:"absolute",left:28,top:32,zIndex:5,fontFamily:fm,fontSize:10,color:"rgba(255,255,255,0.75)",letterSpacing:2}},
+      "INTERNAL · Q3 2025"),
+    h("div",{style:{position:"absolute",left:28,bottom:28,zIndex:5,display:"flex",flexDirection:"column",gap:6}}),
+    h("div",{style:{position:"absolute",left:28,bottom:28,zIndex:5}}),
+
+    // Right panel
+    h("div",{style:{position:"absolute",left:"44%",right:0,top:0,bottom:0,display:"flex",flexDirection:"column",justifyContent:"center",padding:"44px 48px",zIndex:5,gap:10}}),
+
+    // ---- CLEAN REBUILD with simpler structure ----
+    // Orange strip
+    h("div",{style:{
+      position:"absolute",left:0,top:0,width:"43%",height:"100%",
+      background:C.o,zIndex:1,
+      overflow:"hidden"
+    }},
+      h("div",{style:{position:"absolute",left:-80,top:-80,width:280,height:280,borderRadius:"50%",background:"rgba(255,255,255,0.12)"}}),
+      h("div",{style:{position:"absolute",left:40,bottom:-90,width:220,height:220,borderRadius:"50%",background:"rgba(0,0,0,0.09)"}}),
+      h("div",{style:{position:"absolute",left:20,top:24,fontFamily:fm,fontSize:10,color:"rgba(255,255,255,0.7)",letterSpacing:2}},
+        "INTERNAL · Q3 2025"),
+      h("div",{style:{position:"absolute",left:20,bottom:24,right:20}}),
+      h("div",{style:{position:"absolute",bottom:24,left:20,right:20,display:"flex",flexDirection:"column",gap:6}}),
+      h("div",{style:{position:"absolute",bottom:24,left:20,color:"rgba(255,255,255,0.9)",fontFamily:fb,fontSize:13,lineHeight:1.6}}),
+      h("div",{style:{
+        position:"absolute",bottom:24,left:20,right:16,
+        color:"rgba(255,255,255,0.85)",fontFamily:fb,fontSize:12,lineHeight:1.7
+      }},
+        "July — August — September 2025",h("br"),
+        h("span",{style:{fontFamily:fm,fontSize:10,opacity:0.7}},"tangocode.com"))
+    ),
+
+    // Right panel content
+    h("div",{style:{
+      position:"absolute",left:"43%",right:0,top:0,bottom:0,
+      display:"flex",flexDirection:"column",justifyContent:"center",
+      padding:"32px 40px 32px 44px",
+      zIndex:1,gap:8
+    }},
+      // dots grid deco
+      h("div",{style:{position:"absolute",right:20,top:20,display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:6,width:70}}),
+      h("div",{style:{fontFamily:fm,fontSize:11,color:C.o,letterSpacing:2,marginBottom:4}},"<newsletter />"),
+      h("div",{style:{fontFamily:fh,fontSize:54,fontWeight:900,color:C.ink,lineHeight:0.95,marginBottom:8}}),
+      h("div",{style:{fontFamily:fh,fontSize:54,fontWeight:900,color:C.ink,lineHeight:0.95}}),
+      h("div",{style:{fontFamily:fh,fontSize:56,fontWeight:900,lineHeight:0.92}}),
+      h("div",{style:{fontFamily:fh,fontSize:52,fontWeight:900,color:C.ink,lineHeight:0.93,marginBottom:4}},
+        h("span",{style:{color:C.o,fontStyle:"italic"}},"Between"),h("br"),
+        "The",h("br"),"Lines"
+      ),
+      h(Wave,{col:C.t}),
+      h("div",{style:{fontFamily:fb,fontSize:14,color:C.ink2,lineHeight:1.7,maxWidth:280}}),
+      h("div",{style:{fontFamily:fb,fontSize:14,color:C.ink2,lineHeight:1.7}}),
+      h("div",{style:{fontFamily:fb,fontSize:14,color:C.ink2,lineHeight:1.7,maxWidth:280}},
+        "Keeping TangoCoders connected — stories, wins, trips & taco champions from across the globe."),
+      h("div",{style:{display:"flex",gap:8,marginTop:10,flexWrap:"wrap"}}),
+      h("div",{style:{display:"flex",gap:8,marginTop:8,flexWrap:"wrap"}},
+        [["🚀","Hackathon"],["🌮","Tacos"],["✈️","8 trips"],["👋","New hire"]].map(([e,l],i)=>
+          h("div",{key:i,style:{display:"flex",alignItems:"center",gap:5,background:C.peach,borderRadius:100,padding:"5px 12px",border:"1.5px solid "+C.o+"30"}},
+            h("span",{style:{fontSize:13}},e),
+            h("span",{style:{fontFamily:fb,fontSize:11,fontWeight:700,color:C.o}},l)))
+      )
+    )
+  );
+}
+
+// ── SLIDE 1: INDEX ──────────────────────────────────────────────
+function SlideIndex({goTo}){
+  const secs=[
+    {n:1,icon:"🚀",title:"Hackathon 2025",sub:"6 teams · AI Agents · $3K prizes",i:3,col:C.o,bg:C.peach},
+    {n:2,icon:"🍽️",title:"Culture Team",sub:"4 gatherings across 2 countries",i:4,col:C.t,bg:C.mint},
+    {n:3,icon:"🌮",title:"Taco Winners",sub:"Jul · Aug · Sep champions",i:5,col:C.pk,bg:"#FFE0E8"},
+    {n:4,icon:"👋",title:"New Hire",sub:"Welcome Leonel Zeballos",i:7,col:"#C47D00",bg:C.lemon},
+    {n:5,icon:"✈️",title:"Team Updates",sub:"L2T reunion in Evanston",i:8,col:C.p,bg:"#EEE8FF"},
+    {n:6,icon:"🌍",title:"Time Off",sub:"8 TangoCoders · 10+ destinations",i:9,col:C.g,bg:"#D8FAF1"},
+  ];
+  return h("div",{style:{flex:1,display:"flex",flexDirection:"column",background:C.bg,padding:"20px 28px 16px",gap:12}},
+    h("div",{style:{display:"flex",alignItems:"baseline",gap:12}},
+      h("div",{style:{fontFamily:fh,fontSize:36,fontWeight:900,color:C.ink,fontStyle:"italic"}},"What's inside"),
+      h("div",{style:{fontFamily:fm,fontSize:10,color:C.ink3,letterSpacing:2}},"Q3 2025 · JULY–SEPTEMBER")
+    ),
+    h("div",{style:{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10,flex:1}},
+      secs.map(s=>h("button",{key:s.n,onClick:()=>goTo(s.i),
+        style:{
+          background:s.bg,border:"2px solid "+s.col+"30",borderRadius:16,
+          padding:"14px 16px",textAlign:"left",display:"flex",flexDirection:"column",gap:6,
+          transition:"transform 0.15s,box-shadow 0.15s"
+        },
+        onMouseEnter:e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow="0 8px 24px "+s.col+"28";},
+        onMouseLeave:e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="";},
+      },
+        h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}),
+        h("div",{style:{fontSize:28}},s.icon),
+        h("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between"}}),
+        h("div",{style:{fontFamily:fh,fontSize:18,fontWeight:900,color:C.ink,lineHeight:1.1}},s.title),
+        h("div",{style:{fontFamily:fb,fontSize:11,color:C.ink2,lineHeight:1.4}},s.sub),
+        h("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",marginTop:"auto",paddingTop:4}}),
+        h("div",{style:{marginTop:"auto",display:"flex",alignItems:"center",justifyContent:"space-between"}}),
+        h("div",{style:{
+          marginTop:8,display:"flex",alignItems:"center",justifyContent:"space-between"
+        }},
+          h("div",{style:{background:s.col,color:"#fff",fontFamily:fm,fontSize:8,fontWeight:700,padding:"2px 8px",borderRadius:100}},"0"+s.n),
+          h("div",{style:{fontSize:18,color:s.col}},"→")
+        )
+      ))
+    )
+  );
+}
+
+// ── SLIDE 2: HIGHLIGHTS ──────────────────────────────────────────
+function SlideHighlights(){
+  const items=[
+    {e:"🚀",t:"Hackathon 2025",d:"6 teams, AI Agents, $3K in prizes"},
+    {e:"🌮",t:"Taco Champions",d:"Mercedes B., Ale Arce & Nico G."},
+    {e:"🧥",t:"TangoCode Hoodies",d:"Coming soon — stay tuned!"},
+    {e:"🤖",t:"AI Demo by Pablo S.",d:"3× faster test case generation"},
+    {e:"👋",t:"New TangoCoder",d:"Welcome Leonel Zeballos to the team"},
+    {e:"✈️",t:"World Travelers",d:"Indonesia, Japan, Italy, Turkey & more"},
+    {e:"🤝",t:"L2T Reunion",d:"Seba & Vero — 6 years in the making"}
+  ];
+  return h("div",{style:{flex:1,display:"flex",padding:"20px 28px",gap:20,background:C.bg}},
+    h("div",{style:{flex:1.4,display:"flex",flexDirection:"column",gap:10}},
+      h("div",{style:{fontFamily:fm,fontSize:10,color:C.t,letterSpacing:2}},"Q3 2025 RECAP"),
+      h("div",{style:{fontFamily:fh,fontSize:38,fontWeight:900,color:C.ink,lineHeight:0.95,marginBottom:4}},
+        "At a",h("br"),h("span",{style:{color:C.o,fontStyle:"italic"}},"Glance")),
+      h("div",{style:{display:"flex",flexDirection:"column",gap:6}},
+        items.map((it,i)=>h("div",{key:i,style:{
+          display:"flex",alignItems:"center",gap:12,padding:"8px 12px",
+          background:C.bg2,borderRadius:10,border:"1.5px solid "+C.border,
+        }},
+          h("div",{style:{fontSize:18,width:28,textAlign:"center",flexShrink:0}},it.e),
+          h("div",null,
+            h("div",{style:{fontFamily:fb,fontSize:12,fontWeight:700,color:C.ink}},it.t),
+            h("div",{style:{fontFamily:fb,fontSize:11,color:C.ink2}},it.d)
+          )
+        ))
+      )
+    ),
+    h("div",{style:{width:230,display:"flex",flexDirection:"column",gap:10}}),
+    h("div",{style:{width:230,display:"flex",flexDirection:"column",gap:10}},
+      // Taco winners card
+      h("div",{style:{background:C.bg2,borderRadius:16,border:"2px solid "+C.o+"30",padding:14,overflow:"hidden",position:"relative"}}),
+      h("div",{style:{
+        background:C.bg2,borderRadius:16,border:"2px solid "+C.o+"30",padding:14,overflow:"hidden"
+      }},
+        h("div",{style:{fontFamily:fh,fontSize:20,fontWeight:900,color:C.o,fontStyle:"italic",marginBottom:8}},"Taco 🌮 Champions"),
+        [{mo:"July",name:"Mercedes B.",t:17,col:C.t},{mo:"August",name:"Ale Arce",t:13,col:C.o},{mo:"September",name:"Nico G.",t:14,col:C.pk}]
+          .map((w,i)=>h("div",{key:i,style:{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"7px 0",borderBottom:i<2?"1.5px solid "+C.border:"none"}},
+            h("div",null,
+              h("div",{style:{fontFamily:fm,fontSize:9,color:C.ink3}},w.mo),
+              h("div",{style:{fontFamily:fb,fontSize:13,fontWeight:700,color:C.ink}},w.name)
+            ),
+            h("div",{style:{fontFamily:fh,fontSize:28,fontWeight:900,color:w.col,fontStyle:"italic"}},w.t)
+          ))
+      ),
+      // World map card
+      h("div",{style:{flex:1,background:C.mint,borderRadius:16,border:"2px solid "+C.t+"30",padding:14}}),
+      h("div",{style:{flex:1,background:C.mint,borderRadius:16,border:"2px solid "+C.t+"30",padding:14}},
+        h("div",{style:{fontFamily:fh,fontSize:17,fontWeight:900,color:C.t,fontStyle:"italic",marginBottom:8}},"Around the World"),
+        ["🇮🇩 Indonesia","🇪🇸 Spain & Mallorca","🇯🇵 Japan","🇺🇸 Miami ×2","🇮🇹 Italy & Sicily","🇹🇷 Turkey & 🇬🇪 Georgia"]
+          .map((c,i)=>h("div",{key:i,style:{fontFamily:fb,fontSize:12,color:C.ink,padding:"3px 0",borderBottom:i<5?"1px solid "+C.t+"20":"none"}},c))
+      )
+    )
+  );
+}
+
+// ── SLIDE 3: HACKATHON ──────────────────────────────────────────
+function SlideHackathon(){
+  const podium=[
+    {place:"2nd",name:"Cache me if you can",prize:"$1,000",ht:110,col:"#94A3B8",medal:"🥈"},
+    {place:"1st",name:"Byte Sisters",prize:"$1,500",ht:150,col:"#E9A800",medal:"🥇"},
+    {place:"3rd",name:"Fratelli Branca",prize:"$500",ht:80,col:"#CD7F32",medal:"🥉"}
+  ];
+  return h("div",{style:{flex:1,display:"flex",padding:"20px 28px",gap:20,background:C.bg}},
+    h("div",{style:{flex:1,display:"flex",flexDirection:"column",gap:8}},
+      h(SLabel,{n:1,label:"Company Updates",col:C.o}),
+      h("div",{style:{fontFamily:fh,fontSize:40,fontWeight:900,color:C.ink,lineHeight:0.95}}),
+      h("div",{style:{fontFamily:fh,fontSize:40,fontWeight:900,color:C.ink,lineHeight:0.95}},
+        "Hackathon",h("br"),h("span",{style:{color:C.o,fontStyle:"italic"}},"2025 🚀")),
+      h(Wave,{col:C.o}),
+      h("div",{style:{fontFamily:fb,fontSize:13,color:C.ink2,lineHeight:1.7,maxWidth:360}},
+        "All 6 teams delivered groundbreaking ideas with creativity, teamwork, and technical excellence. Scores were separated by mere decimals. The central theme: TangoCode's AI Agents future."),
+      // Stats
+      h("div",{style:{display:"flex",gap:10,marginTop:6}}),
+      h("div",{style:{display:"flex",gap:8,marginTop:4,flexWrap:"wrap"}},
+        [["6","Teams"],["AI Agents","Theme"],["$3,000","Total Prizes"],["August","When"]].map(([v,k],i)=>
+          h("div",{key:i,style:{background:C.bg2,border:"1.5px solid "+C.border,borderRadius:10,padding:"8px 12px",textAlign:"center"}},
+            h("div",{style:{fontFamily:fh,fontSize:20,fontWeight:900,color:C.o,fontStyle:"italic"}},v),
+            h("div",{style:{fontFamily:fm,fontSize:9,color:C.ink3,letterSpacing:1}},k)
+          )
+        )
+      ),
+      // Podium
+      h("div",{style:{display:"flex",gap:8,alignItems:"flex-end",flex:1,marginTop:8}}),
+      h("div",{style:{display:"flex",gap:8,alignItems:"flex-end",flex:1,marginTop:6}},
+        podium.map((p,i)=>h("div",{key:i,style:{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:4}},
+          h("div",{style:{fontSize:24}},p.medal),
+          h("div",{style:{
+            width:"100%",height:p.ht,background:p.col+"18",border:"2px solid "+p.col+"50",
+            borderRadius:"10px 10px 0 0",display:"flex",flexDirection:"column",
+            alignItems:"center",justifyContent:"center",gap:4,padding:"0 6px"
+          }},
+            h("div",{style:{fontFamily:fb,fontSize:11,fontWeight:700,color:C.ink,textAlign:"center",lineHeight:1.3}},'"'+p.name+'"'),
+            h("div",{style:{fontFamily:fh,fontSize:16,fontWeight:900,color:p.col,fontStyle:"italic"}},p.prize)
+          ),
+          h("div",{style:{width:"100%",background:p.col,textAlign:"center",fontFamily:fm,fontSize:9,color:"#fff",fontWeight:700,padding:"3px 0",borderRadius:"0 0 6px 6px"}},p.place+" PLACE")
+        ))
+      )
+    ),
+    h("div",{style:{width:220,display:"flex",flexDirection:"column",gap:10,justifyContent:"center"}},
+      h(Ph,{label:"HACKATHON\n2025 TEAMS",h:240,accent:C.o,radius:16}),
+      h("div",{style:{background:C.peach,borderRadius:12,border:"2px solid "+C.o+"30",padding:12,textAlign:"center"}},
+        h("div",{style:{fontFamily:fh,fontSize:13,fontWeight:700,color:C.ink,fontStyle:"italic"}},"🎉 Congrats to all 6 teams!"),
+        h("div",{style:{fontFamily:fb,fontSize:11,color:C.ink2,marginTop:4}},"Every team pushed the boundaries of what's possible with AI.")
+      )
+    )
+  );
+}
+
+// ── SLIDE 4: CULTURE ──────────────────────────────────────────────
+function SlideCulture(){
+  const gs=[
+    {name:"El Charrua",flag:"🇺🇾",type:"Steakhouse",note:"The asado (barbecue) was very tasty!",col:C.o,bg:C.peach},
+    {name:"Ramen Feliz",flag:"🇪🇨",type:"Ramen Bar",note:"Good flavor, a bit slow — but worth it!",col:C.pk,bg:"#FFE0E8"},
+    {name:"Mansion Matilde",flag:"🇪🇨",type:"Elegant Dining",note:"Beautiful restored old house. Delicious food!",col:C.p,bg:"#EEE8FF"},
+    {name:"Sumo Brew Pub",flag:"🇺🇾",type:"Brewpub",note:"Musical murals on the walls. Ping pong & pool!",col:C.t,bg:C.mint},
+  ];
+  return h("div",{style:{flex:1,display:"flex",flexDirection:"column",padding:"18px 28px 14px",gap:10,background:C.bg}},
+    h("div",{style:{display:"flex",alignItems:"baseline",gap:12}},
+      h(SLabel,{n:2,label:"Department Updates · Culture Team",col:C.t})),
+    h("div",{style:{fontFamily:fh,fontSize:34,fontWeight:900,color:C.ink,lineHeight:1}}),
+    h("div",{style:{fontFamily:fh,fontSize:34,fontWeight:900,color:C.ink,lineHeight:1,marginBottom:8}},
+      h("span",{style:{color:C.t,fontStyle:"italic"}},"Team Gatherings")," 🍽️ — Q3 2025"),
+    h("div",{style:{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,flex:1}},
+      gs.map((g,i)=>h("div",{key:i,style:{
+        background:g.bg,border:"2px solid "+g.col+"30",borderRadius:14,
+        display:"flex",flexDirection:"column",overflow:"hidden"
+      }},
+        h(Ph,{label:g.name,h:120,accent:g.col,radius:0}),
+        h("div",{style:{padding:"10px 12px",flex:1,display:"flex",flexDirection:"column",gap:4}}),
+        h("div",{style:{padding:"10px 12px",flex:1,display:"flex",flexDirection:"column",gap:5}},
+          h("div",{style:{display:"flex",alignItems:"center",gap:6}}),
+          h("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between"}}),
+          h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}),
+          h("div",{style:{fontFamily:fh,fontSize:15,fontWeight:900,color:C.ink,lineHeight:1.1}},g.flag+" "+g.name),
+          h("div",{style:{display:"inline-block",background:g.col,color:"#fff",fontFamily:fm,fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:100,marginTop:2}},g.type),
+          h("div",{style:{fontFamily:fb,fontSize:12,color:C.ink2,lineHeight:1.5,flex:1,marginTop:4}},'"'+g.note+'"')
+        )
+      ))
+    )
+  );
+}
+
+// ── SLIDE 5: TACO JUL/AUG ────────────────────────────────────────
+function SlideTacoJA(){
+  const ws=[{mo:"July",name:"Mercedes Buitron",t:17,col:C.t,bg:C.mint},{mo:"August",name:"Ale Arce",t:13,col:C.o,bg:C.peach}];
+  return h("div",{style:{flex:1,display:"flex",padding:"20px 28px",gap:18,background:C.bg}},
+    h("div",{style:{width:190,flexShrink:0,display:"flex",flexDirection:"column",justifyContent:"center",gap:8}},
+      h(SLabel,{n:3,label:"Taco Winners",col:C.pk}),
+      h("div",{style:{fontFamily:fh,fontSize:44,fontWeight:900,color:C.ink,lineHeight:0.9}}),
+      h("div",{style:{fontFamily:fh,fontSize:44,fontWeight:900,color:C.ink,lineHeight:0.9}},
+        "🌮",h("br"),h("span",{style:{color:C.o,fontStyle:"italic"}},"July"),h("br"),"& August"),
+      h(Wave,{col:C.pk}),
+      h("div",{style:{fontFamily:fb,fontSize:13,color:C.ink2,lineHeight:1.7}},"Each winner earns a ",h("strong",{style:{color:C.o}},"$50 Gift Card"),"! Congrats — keep the appreciation flowing! 🎉")
+    ),
+    ws.map((w,i)=>h("div",{key:i,style:{
+      flex:1,background:w.bg,border:"2px solid "+w.col+"40",borderRadius:18,
+      padding:18,display:"flex",flexDirection:"column",gap:12
+    }},
+      h("div",{style:{background:w.col,color:"#fff",fontFamily:fm,fontSize:10,fontWeight:700,padding:"3px 12px",borderRadius:100,alignSelf:"flex-start",letterSpacing:1}},w.mo.toUpperCase()+" 2025"),
+      h("div",{style:{flex:1,borderRadius:12,overflow:"hidden",border:"2px dashed "+w.col+"50",background:"linear-gradient(135deg,"+w.col+"22,"+w.col+"08)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:8}},
+        h("div",{style:{fontSize:48}},"📸"),
+        h("div",{style:{fontSize:12,fontFamily:fm,color:w.col,fontWeight:700,opacity:0.7,textAlign:"center"}},w.name.toUpperCase())
+      ),
+      h("div",{style:{textAlign:"center",paddingTop:2}},
+        h("div",{style:{fontFamily:fh,fontSize:20,fontWeight:900,color:C.ink}},w.name),
+        h("div",{style:{fontFamily:fh,fontSize:72,fontWeight:900,color:w.col,lineHeight:1,fontStyle:"italic"}},w.t),
+        h("div",{style:{fontFamily:fb,fontSize:13,color:C.ink2}},"tacos this month!")
+      )
+    ))
+  );
+}
+
+// ── SLIDE 6: TACO SEPT ───────────────────────────────────────────
+function SlideTacoS(){
+  return h("div",{style:{flex:1,display:"flex",padding:"20px 28px",gap:20,background:C.bg}},
+    h("div",{style:{flex:1,display:"flex",flexDirection:"column",gap:10}},
+      h(SLabel,{n:3,label:"Taco Winner · September",col:C.pk}),
+      h("div",{style:{
+        flex:1,background:"#FFE0E8",border:"2px solid "+C.pk+"40",borderRadius:18,
+        padding:18,display:"flex",flexDirection:"column",gap:10
+      }},
+        h("div",{style:{background:C.pk,color:"#fff",fontFamily:fm,fontSize:10,fontWeight:700,padding:"3px 12px",borderRadius:100,alignSelf:"flex-start",letterSpacing:1}},"SEPTEMBER 2025"),
+        h("div",{style:{flex:1,borderRadius:12,overflow:"hidden",border:"2px dashed "+C.pk+"50",background:"linear-gradient(135deg,"+C.pk+"22,"+C.pk+"08)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:8}},
+          h("div",{style:{fontSize:52}},"📸"),
+          h("div",{style:{fontSize:13,fontFamily:fm,color:C.pk,fontWeight:700,opacity:0.7}}, "NICO G.")
+        ),
+        h("div",{style:{textAlign:"center",paddingTop:4}},
+          h("div",{style:{fontFamily:fh,fontSize:26,fontWeight:900,color:C.ink}},"Nico G."),
+          h("div",{style:{fontFamily:fh,fontSize:96,fontWeight:900,color:C.pk,lineHeight:1,fontStyle:"italic"}},"14"),
+          h("div",{style:{fontFamily:fb,fontSize:14,color:C.ink2}},"tacos this month!")
+        )
+      )
+    ),
+    h("div",{style:{flex:1,display:"flex",flexDirection:"column",gap:10}},
+      h("div",{style:{fontFamily:fm,fontSize:10,color:C.o,letterSpacing:2}},"FROM HEYTACO"),
+      h("div",{style:{
+        flex:1,background:C.bg2,border:"2px solid "+C.border,borderRadius:18,padding:20,
+        display:"flex",flexDirection:"column",gap:10
+      }},
+        h("div",{style:{fontFamily:fh,fontSize:24,fontWeight:900,color:C.ink,fontStyle:"italic",lineHeight:1.2}}),
+        h("div",{style:{fontFamily:fh,fontSize:24,fontWeight:900,color:C.ink,fontStyle:"italic",lineHeight:1.2}},
+          '"There\'s no such thing as a wasteful taco. ',h("span",{style:{color:C.o}},"Ever."),"\""),
+        h("div",{style:{fontFamily:fb,fontSize:11,color:C.ink3}},"— Uma Japundza, CRO of HeyTaco"),
+        h("div",{style:{height:"1.5px",background:C.border,margin:"4px 0"}}),
+        h("div",{style:{fontFamily:fb,fontSize:13,color:C.ink2,lineHeight:1.75,flex:1}},
+          "From ",h("em",null,"7 Habits of Highly Effective People"),": every relationship has an Emotional Bank Account. Positive interactions are ",h("strong",{style:{color:C.t}},"deposits"),"; broken promises are ",h("strong",{style:{color:C.pk}},"withdrawals"),".",
+          h("br"),h("br"),
+          "Every taco you give is a deposit. Celebrating small wins keeps accounts in the green — especially for remote teams spread across the globe."
+        ),
+        h("div",{style:{display:"flex",gap:6,flexWrap:"wrap"}},
+          ["💚 Build trust","🌮 No wasteful tacos","📈 Small wins matter"].map((tag,i)=>
+            h("span",{key:i,style:{background:C.peach,color:C.o,fontSize:11,fontFamily:fb,fontWeight:700,padding:"4px 10px",borderRadius:100,border:"1.5px solid "+C.o+"30"}},tag)
+          )
+        )
+      )
+    )
+  );
+}
+
+// ── SLIDE 7: WELCOME ─────────────────────────────────────────────
+function SlideWelcome(){
+  const facts=[["⚽","San Lorenzo fan"],["🎮","Competitive gaming"],["💪","Gym enthusiast"],["🎵","Music lover"],["🐱","Cat dad — Lolo"],["👨‍🍳","Learning to cook"]];
+  return h("div",{style:{flex:1,display:"flex",padding:"20px 28px",gap:20,background:C.bg}},
+    h("div",{style:{flex:1,display:"flex",flexDirection:"column",gap:10}},
+      h("div",{style:{flex:1,borderRadius:16,overflow:"hidden",border:"2px dashed #C47D0050",background:"linear-gradient(135deg,#C47D0022,#C47D0008)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10}},
+        h("div",{style:{fontSize:52}},"📸"),
+        h("div",{style:{fontSize:13,fontFamily:fm,color:"#C47D00",fontWeight:700,opacity:0.7,textAlign:"center"}},"LEONEL ZEBALLOS")
+      ),
+      h("div",{style:{background:C.lemon,border:"2px solid "+C.y+"50",borderRadius:12,padding:14}},
+        h("div",{style:{fontFamily:fh,fontSize:15,fontWeight:700,fontStyle:"italic",color:C.ink,lineHeight:1.65}},
+          '"Welcome to the TangoCode family! Wishing you exciting challenges, growth and success."')
+      )
+    ),
+    h("div",{style:{flex:1,display:"flex",flexDirection:"column",gap:8}},
+      h(SLabel,{n:4,label:"Welcome — Joining TangoCode",col:"#C47D00"}),
+      h("div",{style:{fontFamily:fh,fontSize:40,fontWeight:900,color:C.ink,lineHeight:0.9}}),
+      h("div",{style:{fontFamily:fh,fontSize:40,fontWeight:900,color:C.ink,lineHeight:0.9}},
+        "👋 Welcome,",h("br"),h("span",{style:{color:"#C47D00",fontStyle:"italic"}},"Leonel!")),
+      h("div",{style:{fontFamily:fm,fontSize:11,color:C.ink3,marginTop:4}},"Support SSE II · Chassis Support · Villa María, Argentina"),
+      h(Wave,{col:"#C47D00"}),
+      h("div",{style:{fontFamily:fb,fontSize:13,color:C.ink2,lineHeight:1.7,marginBottom:4}},
+        "Leonel lives and breathes technology — constantly exploring the latest trends and innovations. We're excited to see the energy, curiosity, and dedication he brings to every project."),
+      h("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:7,marginTop:4}}),
+      h("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:7}},
+        facts.map(([e,l],i)=>h("div",{key:i,style:{
+          display:"flex",alignItems:"center",gap:8,padding:"7px 10px",
+          background:C.bg2,borderRadius:10,border:"1.5px solid "+C.border
+        }},
+          h("span",{style:{fontSize:16}},e),
+          h("span",{style:{fontFamily:fb,fontSize:12,color:C.ink}},l)
+        ))
+      )
+    )
+  );
+}
+
+// ── SLIDE 8: L2T ─────────────────────────────────────────────────
+function SlideL2T(){
+  return h("div",{style:{flex:1,display:"flex",padding:"20px 28px",gap:22,background:C.bg}},
+    h("div",{style:{flex:1,display:"flex",flexDirection:"column",gap:8}},
+      h(SLabel,{n:5,label:"Team Updates · L2T Gathering",col:C.g}),
+      h("div",{style:{fontFamily:fh,fontSize:38,fontWeight:900,color:C.ink,lineHeight:0.92}}),
+      h("div",{style:{fontFamily:fh,fontSize:38,fontWeight:900,color:C.ink,lineHeight:0.92}},
+        "✨ Reuniting with",h("br"),h("span",{style:{color:C.t,fontStyle:"italic"}},"the L2T Team")),
+      h(Wave,{col:C.t}),
+      h("div",{style:{
+        background:C.mint,border:"2px solid "+C.t+"40",borderRadius:14,
+        padding:16,flex:1,display:"flex",flexDirection:"column",gap:6
+      }},
+        h("div",{style:{fontFamily:fm,fontSize:10,color:C.t,letterSpacing:1,marginBottom:4}},"// Seba shares:"),
+        h("div",{style:{fontFamily:fh,fontSize:15,fontWeight:700,fontStyle:"italic",color:C.ink,lineHeight:1.65}}),
+        h("div",{style:{fontFamily:fh,fontSize:15,fontWeight:700,fontStyle:"italic",color:C.ink,lineHeight:1.65,flex:1}},
+          '"After six years, we finally reunited with the L2T team! Veronica and I had the chance to visit their office and enjoy a wonderful dinner with Carrie, David Altman, Madeline, and David Weisman.',
+          h("br"),h("br"),
+          "Great conversations, lots of laughs, and a reminder of how valuable these relationships are.\""
+        ),
+        h("div",{style:{display:"flex",gap:6,flexWrap:"wrap",marginTop:4}}),
+        h("div",{style:{display:"flex",gap:6,flexWrap:"wrap"}},
+          ["📍 Evanston, IL","📅 July 23rd","🍽️ The Barn Steakhouse","⏱️ 6 years!"].map((tag,i)=>
+            h("span",{key:i,style:{background:C.bg2,border:"1.5px solid "+C.t+"30",color:C.t,fontFamily:fb,fontSize:11,fontWeight:600,padding:"4px 10px",borderRadius:100}},tag)
+          )
+        )
+      )
+    ),
+    h("div",{style:{flex:1,borderRadius:16,overflow:"hidden",border:"2px dashed "+C.t+"50",background:"linear-gradient(135deg,"+C.t+"22,"+C.t+"08)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:12}},
+      h("div",{style:{fontSize:60}},"📸"),
+      h("div",{style:{fontSize:14,fontFamily:fm,color:C.t,fontWeight:700,textAlign:"center",opacity:0.7,lineHeight:1.5}},"VERO & SEBA\nwith the L2T Team")
+    )
+  );
+}
+
+// ── TIME OFF ─────────────────────────────────────────────────────
+function SlideTo({person,dest,flag,quote,col,facts,photos}){
+  facts=facts||[];photos=photos||4;
+  const thumbCols=Math.min(photos-1,4);
+  return h("div",{style:{flex:1,display:"flex",padding:"18px 26px",gap:18,background:C.bg}},
+    h("div",{style:{flex:1,display:"flex",flexDirection:"column",gap:8}},
+      h("div",{style:{flex:1,borderRadius:16,overflow:"hidden",border:"2px dashed "+col+"50",background:"linear-gradient(135deg,"+col+"22,"+col+"08)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10}},
+        h("div",{style:{fontSize:60}},"📸"),
+        h("div",{style:{fontSize:13,fontFamily:fm,color:col,fontWeight:700,opacity:0.7,textAlign:"center"}},person.toUpperCase())
+      ),
+      thumbCols>0&&h("div",{style:{display:"grid",gridTemplateColumns:"repeat("+thumbCols+",1fr)",gap:7,flexShrink:0}},
+        Array.from({length:thumbCols}).map((_,i)=>h(Ph,{key:i,label:"📸",h:80,accent:col,radius:10}))
+      )
+    ),
+    h("div",{style:{flex:1,display:"flex",flexDirection:"column",gap:8}},
+      h(SLabel,{n:6,label:"Time Off · Travel Stories",col}),
+      h("div",{style:{display:"flex",alignItems:"center",gap:10}},
+        h("div",{style:{fontFamily:fh,fontSize:34,fontWeight:900,color:col,fontStyle:"italic",lineHeight:1}},person),
+        h("div",{style:{fontSize:24}},flag)
+      ),
+      h("div",{style:{fontFamily:fm,fontSize:11,color:C.ink3,marginTop:-4}},dest),
+      h(Wave,{col}),
+      h("div",{style:{
+        flex:1,background:col+"14",border:"2px solid "+col+"28",
+        borderRadius:14,padding:16,overflow:"auto"
+      }},
+        h("div",{style:{fontFamily:fh,fontSize:15,fontWeight:700,fontStyle:"italic",color:C.ink,lineHeight:1.8}},quote)
+      ),
+      facts.length>0&&h("div",{style:{display:"flex",gap:6,flexWrap:"wrap",marginTop:2}},
+        facts.map((f,i)=>h("span",{key:i,style:{
+          background:col+"18",border:"1.5px solid "+col+"40",
+          color:col,fontFamily:fb,fontSize:11,fontWeight:700,
+          padding:"4px 11px",borderRadius:100
+        }},f))
+      )
+    )
+  );
+}
+
+// ── SLIDE 18: CLOSING ────────────────────────────────────────────
+function SlideClosing(){
+  return h("div",{style:{flex:1,display:"flex",background:C.bg,position:"relative",overflow:"hidden"}},
+    h("div",{style:{position:"absolute",left:0,top:0,width:"50%",height:"100%",background:C.t,overflow:"hidden"}}),
+    h("div",{style:{position:"absolute",left:0,top:0,width:"50%",height:"100%",background:C.t,overflow:"hidden"}}),
+    // teal circles
+    h("div",{style:{position:"absolute",left:-80,top:-80,width:300,height:300,borderRadius:"50%",background:"rgba(255,255,255,0.1)"}}),
+    h("div",{style:{position:"absolute",left:40,bottom:-90,width:240,height:240,borderRadius:"50%",background:"rgba(0,0,0,0.08)"}}),
+    // left text
+    h("div",{style:{
+      position:"absolute",left:0,top:0,width:"50%",height:"100%",
+      display:"flex",flexDirection:"column",justifyContent:"center",
+      padding:"40px 44px",zIndex:1,gap:10
+    }},
+      h("div",{style:{fontSize:48,marginBottom:4}},"🎉"),
+      h("div",{style:{fontFamily:fh,fontSize:52,fontWeight:900,color:"#fff",lineHeight:0.9}}),
+      h("div",{style:{fontFamily:fh,fontSize:52,fontWeight:900,color:"#fff",lineHeight:0.9}},
+        "See you",h("br"),"next",h("br"),h("span",{style:{color:C.lemon,fontStyle:"italic"}},"quarter!")),
+      h(Wave,{col:"rgba(255,255,255,0.5)"}),
+      h("div",{style:{fontFamily:fb,fontSize:14,color:"rgba(255,255,255,0.85)",lineHeight:1.7}}),
+      h("div",{style:{fontFamily:fb,fontSize:14,color:"rgba(255,255,255,0.85)",lineHeight:1.7}},
+        "Thanks to everyone who shared their stories, celebrated wins, and kept TangoCode culture alive — no matter the timezone.")
+    ),
+    // right side
+    h("div",{style:{
+      position:"absolute",left:"50%",right:0,top:0,bottom:0,
+      display:"flex",flexDirection:"column",justifyContent:"center",
+      padding:"40px 44px",zIndex:1,gap:14
+    }},
+      h("div",{style:{fontFamily:fm,fontSize:11,color:C.o,letterSpacing:2}},"<newsletter />"),
+      h("div",{style:{fontFamily:fh,fontSize:38,fontWeight:900,color:C.ink,lineHeight:0.92,fontStyle:"italic"}}),
+      h("div",{style:{fontFamily:fh,fontSize:38,fontWeight:900,color:C.ink,lineHeight:0.92,fontStyle:"italic"}},
+        "Between",h("br"),h("span",{style:{fontStyle:"normal",color:C.o}},"The Lines")),
+      h("div",{style:{fontFamily:fb,fontSize:13,color:C.ink2,lineHeight:1.7}}),
+      h("div",{style:{fontFamily:fb,fontSize:13,color:C.ink2,lineHeight:1.7}},
+        "Q3 2025 — July · August · September",h("br"),"tangocode.com"),
+      h("div",{style:{display:"flex",gap:8,flexWrap:"wrap"}}),
+      h("div",{style:{display:"flex",gap:8,marginTop:4,flexWrap:"wrap"}},
+        ["🚀 Hackathon","🌮 Tacos","✈️ Adventures","👋 Welcome Leonel"].map((t,i)=>
+          h("div",{key:i,style:{background:C.peach,color:C.o,fontFamily:fb,fontSize:11,fontWeight:700,padding:"4px 10px",borderRadius:100,border:"1.5px solid "+C.o+"30"}},t)
+        )
+      )
+    )
+  );
+}
+
+// ── APP SHELL ────────────────────────────────────────────────────
+function App(){
+  const [cur,setCur]=useState(0);
+  const [fade,setFade]=useState(true);
+  const [key,setKey]=useState(0);
+
+  const goto=useCallback((idx)=>{
+    if(idx<0||idx>=TOTAL)return;
+    setFade(false);
+    setTimeout(()=>{setCur(idx);setFade(true);setKey(k=>k+1);},140);
+  },[]);
+
+  useEffect(()=>{
+    const onKey=(e)=>{
+      if(e.key==="ArrowRight")setCur(c=>{const n=c<TOTAL-1?c+1:c;if(n!==c){setFade(false);setTimeout(()=>{setFade(true);setKey(k=>k+1);},140);}return n;});
+      if(e.key==="ArrowLeft")setCur(c=>{const n=c>0?c-1:c;if(n!==c){setFade(false);setTimeout(()=>{setFade(true);setKey(k=>k+1);},140);}return n;});
+    };
+    window.addEventListener("keydown",onKey);
+    return()=>window.removeEventListener("keydown",onKey);
+  },[]);
+
+  const slides=[
+    h(SlideCover,null),
+    h(SlideIndex,{goTo:goto}),
+    h(SlideHighlights,null),
+    h(SlideHackathon,null),
+    h(SlideCulture,null),
+    h(SlideTacoJA,null),
+    h(SlideTacoS,null),
+    h(SlideWelcome,null),
+    h(SlideL2T,null),
+    h(SlideTo,{person:"Andrea",dest:"Indonesia 🇮🇩",flag:"🇮🇩",col:"#0891B2",facts:["20 days","Scuba certified 🤿","Motorbike adventures"],quote:"This July, one of my brothers flew to Indonesia to spend his vacation with me — 20 unforgettable days together. We explored islands, sailed on boats, snorkeled in crystal-clear waters, and rented motorbikes to discover hidden beaches. The most magical part: watching him try scuba diving for the very first time — he got fully certified!"}),
+    h(SlideTo,{person:"Julieta",dest:"Europe — 9 Countries 🇪🇺",flag:"🇪🇺",col:"#7C3AED",facts:["2 months","Work + Travel","9 countries","Campervan 🚐"],quote:"We spent two months traveling: Spain, Netherlands, Ireland, Scotland, France, Italy, and Portugal — all while working at TC! Mornings sightseeing, afternoons working. Two music festivals in Spain, giant waves at Nazare, a crazy ride near the Eiffel Tower, and a week in a campervan through Portugal. Favorite museums: Guinness & Heineken!"}),
+    h(SlideTo,{person:"Alejo",dest:"Italy & Amalfi Coast 🇮🇹",flag:"🇮🇹",col:"#DC2626",facts:["Part 1 of 2","Barcelona ➜ Italy","Amalfi Coast 🌊"],quote:"My European journey began at Nico's place in Barcelona — a yearly tradition of padel, work, and great times. Then on to Paola, Italy — my second home — reuniting with my Italian family. The journey continued through Rome, Verona, Bologna, Florence, Venice, and the gem of the trip: the Amalfi Coast. Unforgettable European summer."}),
+    h(SlideTo,{person:"Alejo",dest:"Japan 🇯🇵",flag:"🇯🇵",col:"#E11D48",facts:["Part 2 of 2","Osaka ❤️","Shirakawa-go 🏔️","Best trip ever! ✨"],quote:"The second part took me to Japan — a destination I've dreamed of since childhood. Fascinated by samurai, temples, futuristic cities, incredible food, and manga. My favorite city: Osaka — vibrant, energetic, locals almost 'Latin' in their warmth. Shirakawa-go in the Japanese Alps was breathtaking. Tokyo is endless. Truly the best trip of my life."}),
+    h(SlideTo,{person:"Lucia",dest:"Barcelona & Mallorca 🇪🇸",flag:"🇪🇸",col:"#F59E0B",facts:["August","Gaudi 🏛️","Playa de Muro","Met Nico & Cande"],quote:"In August, I traveled to Barcelona and Mallorca with my sister to escape Montevideo's harsh winter. As an architect, finally seeing Gaudi's work in person was incredible. In Mallorca (Playa de Muro), the water clarity was stunning — almost like the Caribbean. Super safe, quiet, family-friendly, and absolutely beautiful."}),
+    h(SlideTo,{person:"Flo V.",dest:"Miami — Solo Trip 🇺🇸",flag:"🇺🇸",col:"#06B6D4",facts:["Solo trip 💪","Rented a Camaro 🚗","100% recommend"],quote:"A super spontaneous trip! About a month before, I just booked flights to Miami for some relaxing beach days on my own. I rented a Camaro (I'm a big car lover!) and drove around to some really cool places. The beach was amazing, the weather was HOT. It was a week to unwind from the chaos of the year and just be thankful."}),
+    h(SlideTo,{person:"Juan R.",dest:"Miami — Family Trip 🇺🇸",flag:"🇺🇸",col:"#10B981",facts:["Family of 5","Zoo · Seaquarium","Micro Center 🖥️"],quote:"Took the kids to the Zoo, the Seaquarium, the Safari, Miami Beach, and the Kids' Museum. Very, very HOT! We mountain people are not built for that heat. Best part for me: the newly opened Miami Micro Center — every PC builder's dream shop!"}),
+    h(SlideTo,{person:"Agustin",dest:"Venice & Sicily 🇮🇹",flag:"🇮🇹",col:"#8B5CF6",facts:["2 months Europe","Siracusa · Taormina","Pasta every day 🍝"],quote:"Our almost two-month European journey began in Venice and Sicily. From Sicily, we traveled to Siracusa, Noto, Taormina, San Vito Lo Capo, and Cefalu. The weather was absolutely wonderful and we ate a lot — basically pasta! The colors and architecture of Sicily were truly special."}),
+    h(SlideTo,{person:"Ash",dest:"Georgia & Turkey 🇬🇪🇹🇷",flag:"🇬🇪🇹🇷",col:"#F97316",photos:5,facts:["2 trips","Wine birthplace 🍷","Antalya ☀️","Birthday gift 🎁"],quote:"First trip: Georgia — amazing food, wine, beautiful nature, and welcoming people. Georgia is the first country to produce wine! Second trip: Turkey (Antalya) — my wife bought it as a birthday gift! I thought doing nothing for a week would bore me. I was SO wrong! Unlimited food, drinks, pool, sea, sun, spa, gym. I wanted to extend for one more week!"}),
+    h(SlideClosing,null)
+  ];
+
+  const navBg=C.bg2;
+
+  return h("div",{style:{width:"100%",height:"100vh",display:"flex",flexDirection:"column",background:C.bg,overflow:"hidden"}},
+    // Top progress bar
+    h("div",{style:{height:4,background:C.border,flexShrink:0}},
+      h("div",{style:{height:"100%",background:"linear-gradient(90deg,"+C.o+","+C.t+")",width:((cur+1)/TOTAL*100)+"%",transition:"width 0.3s ease",borderRadius:"0 2px 2px 0"}})
+    ),
+    // Slide area
+    h("div",{style:{flex:1,display:"flex",position:"relative",overflow:"hidden",opacity:fade?1:0,transition:"opacity 0.14s ease"},key},
+      slides[cur],
+      // Prev arrow
+      cur>0&&h("button",{onClick:()=>goto(cur-1),style:{
+        position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",
+        background:C.bg2,border:"2px solid "+C.border,
+        boxShadow:"0 4px 14px rgba(28,16,8,0.12)",
+        color:C.ink,width:36,height:36,borderRadius:"50%",
+        fontSize:18,zIndex:100,display:"flex",alignItems:"center",justifyContent:"center"
+      }},"‹"),
+      // Next arrow
+      cur<TOTAL-1&&h("button",{onClick:()=>goto(cur+1),style:{
+        position:"absolute",right:10,top:"50%",transform:"translateY(-50%)",
+        background:C.o,border:"2px solid "+C.o,
+        boxShadow:"0 4px 14px "+C.o+"40",
+        color:"#fff",width:36,height:36,borderRadius:"50%",
+        fontSize:18,zIndex:100,display:"flex",alignItems:"center",justifyContent:"center"
+      }},"›")
+    ),
+    // Bottom nav bar
+    h("div",{style:{
+      height:38,background:navBg,borderTop:"1.5px solid "+C.border,
+      display:"flex",alignItems:"center",justifyContent:"space-between",
+      padding:"0 14px",flexShrink:0
+    }},
+      h("button",{onClick:()=>goto(1),style:{
+        background:"none",border:"1.5px solid "+C.o+"40",color:C.o,
+        fontFamily:fm,fontSize:9,padding:"3px 10px",borderRadius:100,
+        display:"flex",alignItems:"center",gap:4,fontWeight:700
+      }},"⌂ INDEX"),
+      h("div",{style:{display:"flex",gap:3,alignItems:"center"}},
+        slides.map((_,i)=>h("button",{key:i,onClick:()=>goto(i),style:{
+          width:i===cur?18:6,height:6,borderRadius:3,border:"none",padding:0,
+          background:i===cur?C.o:C.border,
+          transition:"all 0.2s",cursor:"pointer"
+        }}))
+      ),
+      h("span",{style:{fontFamily:fm,fontSize:9,color:C.ink3}},(cur+1)+" / "+TOTAL+" · ← →")
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(h(App,null));
+</script>
+</body>
+</html>
