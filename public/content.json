@@ -6,10 +6,22 @@
     "monthsShort": "JULY–SEPTEMBER",
     "tagline": "Keeping TangoCoders connected — stories, wins, trips & taco champions from across the globe.",
     "topicPills": [
-      { "emoji": "🚀", "label": "Hackathon" },
-      { "emoji": "🌮", "label": "Tacos" },
-      { "emoji": "✈️", "label": "8 trips" },
-      { "emoji": "👋", "label": "New hire" }
+      {
+        "emoji": "🚀",
+        "label": "Hackathon"
+      },
+      {
+        "emoji": "🌮",
+        "label": "Tacos"
+      },
+      {
+        "emoji": "✈️",
+        "label": "8 trips"
+      },
+      {
+        "emoji": "👋",
+        "label": "New hire"
+      }
     ]
   },
   "sections": [
@@ -28,18 +40,61 @@
       "type": "highlights",
       "data": {
         "items": [
-          { "emoji": "🚀", "title": "Hackathon 2025", "description": "6 teams, AI Agents, $3K in prizes" },
-          { "emoji": "🌮", "title": "Taco Champions", "description": "Mercedes B., Ale Arce & Nico G." },
-          { "emoji": "🧥", "title": "TangoCode Hoodies", "description": "Coming soon — stay tuned!" },
-          { "emoji": "🤖", "title": "AI Demo by Pablo S.", "description": "3× faster test case generation" },
-          { "emoji": "👋", "title": "New TangoCoder", "description": "Welcome Leonel Zeballos to the team" },
-          { "emoji": "✈️", "title": "World Travelers", "description": "Indonesia, Japan, Italy, Turkey & more" },
-          { "emoji": "🤝", "title": "L2T Reunion", "description": "Seba & Vero — 6 years in the making" }
+          {
+            "emoji": "🚀",
+            "title": "Hackathon 2025",
+            "description": "6 teams, AI Agents, $3K in prizes"
+          },
+          {
+            "emoji": "🌮",
+            "title": "Taco Champions",
+            "description": "Mercedes B., Ale Arce & Nico G."
+          },
+          {
+            "emoji": "🧥",
+            "title": "TangoCode Hoodies",
+            "description": "Coming soon — stay tuned!"
+          },
+          {
+            "emoji": "🤖",
+            "title": "AI Demo by Pablo S.",
+            "description": "3× faster test case generation"
+          },
+          {
+            "emoji": "👋",
+            "title": "New TangoCoder",
+            "description": "Welcome Leonel Zeballos to the team"
+          },
+          {
+            "emoji": "✈️",
+            "title": "World Travelers",
+            "description": "Indonesia, Japan, Italy, Turkey & more"
+          },
+          {
+            "emoji": "🤝",
+            "title": "L2T Reunion",
+            "description": "Seba & Vero — 6 years in the making"
+          }
         ],
         "tacoChampions": [
-          { "month": "July", "name": "Mercedes B.", "count": 17, "color": "#0D8F87" },
-          { "month": "August", "name": "Ale Arce", "count": 13, "color": "#F5761A" },
-          { "month": "September", "name": "Nico G.", "count": 14, "color": "#E8547A" }
+          {
+            "month": "July",
+            "name": "Mercedes B.",
+            "count": 17,
+            "color": "#0D8F87"
+          },
+          {
+            "month": "August",
+            "name": "Ale Arce",
+            "count": 13,
+            "color": "#F5761A"
+          },
+          {
+            "month": "September",
+            "name": "Nico G.",
+            "count": 14,
+            "color": "#E8547A"
+          }
         ],
         "destinations": [
           "🇮🇩 Indonesia",
@@ -54,46 +109,142 @@
     {
       "id": "hackathon",
       "type": "hackathon",
-      "indexEntry": { "icon": "🚀", "title": "Hackathon 2025", "subtitle": "6 teams · AI Agents · $3K prizes", "color": "#F5761A", "bg": "#FFE8D6" },
+      "indexEntry": {
+        "icon": "🚀",
+        "title": "Hackathon 2025",
+        "subtitle": "6 teams · AI Agents · $3K prizes",
+        "color": "#F5761A",
+        "bg": "#FFE8D6"
+      },
       "data": {
         "description": "All 6 teams delivered groundbreaking ideas with creativity, teamwork, and technical excellence. Scores were separated by mere decimals. The central theme: TangoCode's AI Agents future.",
         "stats": [
-          { "value": "6", "label": "Teams" },
-          { "value": "AI Agents", "label": "Theme" },
-          { "value": "$3,000", "label": "Total Prizes" },
-          { "value": "August", "label": "When" }
+          {
+            "value": "6",
+            "label": "Teams"
+          },
+          {
+            "value": "AI Agents",
+            "label": "Theme"
+          },
+          {
+            "value": "$3,000",
+            "label": "Total Prizes"
+          },
+          {
+            "value": "August",
+            "label": "When"
+          }
         ],
         "podium": [
-          { "place": "2nd", "name": "Cache me if you can", "prize": "$1,000", "color": "#94A3B8", "height": 110 },
-          { "place": "1st", "name": "Byte Sisters", "prize": "$1,500", "color": "#E9A800", "height": 150 },
-          { "place": "3rd", "name": "Fratelli Branca", "prize": "$500", "color": "#CD7F32", "height": 80 }
+          {
+            "place": "2nd",
+            "name": "Cache me if you can",
+            "prize": "$1,000",
+            "color": "#94A3B8",
+            "height": 110
+          },
+          {
+            "place": "1st",
+            "name": "Byte Sisters",
+            "prize": "$1,500",
+            "color": "#E9A800",
+            "height": 150
+          },
+          {
+            "place": "3rd",
+            "name": "Fratelli Branca",
+            "prize": "$500",
+            "color": "#CD7F32",
+            "height": 80
+          }
         ],
-        "image": null,
+        "image": "images/hackathon/main.svg",
         "congratsMessage": "Every team pushed the boundaries of what's possible with AI."
       }
     },
     {
       "id": "culture",
       "type": "culture",
-      "indexEntry": { "icon": "🍽️", "title": "Culture Team", "subtitle": "4 gatherings across 2 countries", "color": "#0D8F87", "bg": "#D5F2EF" },
+      "indexEntry": {
+        "icon": "🍽️",
+        "title": "Culture Team",
+        "subtitle": "4 gatherings across 2 countries",
+        "color": "#0D8F87",
+        "bg": "#D5F2EF"
+      },
       "data": {
         "gatherings": [
-          { "name": "El Charrua", "flag": "🇺🇾", "category": "Steakhouse", "quote": "The asado (barbecue) was very tasty!", "color": "#F5761A", "bg": "#FFE8D6", "image": null },
-          { "name": "Ramen Feliz", "flag": "🇪🇨", "category": "Ramen Bar", "quote": "Good flavor, a bit slow — but worth it!", "color": "#E8547A", "bg": "#FFE0E8", "image": null },
-          { "name": "Mansion Matilde", "flag": "🇪🇨", "category": "Elegant Dining", "quote": "Beautiful restored old house. Delicious food!", "color": "#A78BFA", "bg": "#EEE8FF", "image": null },
-          { "name": "Sumo Brew Pub", "flag": "🇺🇾", "category": "Brewpub", "quote": "Musical murals on the walls. Ping pong & pool!", "color": "#0D8F87", "bg": "#D5F2EF", "image": null }
+          {
+            "name": "El Charrua",
+            "flag": "🇺🇾",
+            "category": "Steakhouse",
+            "quote": "The asado (barbecue) was very tasty!",
+            "color": "#F5761A",
+            "bg": "#FFE8D6",
+            "image": "images/culture/el-charrua.svg"
+          },
+          {
+            "name": "Ramen Feliz",
+            "flag": "🇪🇨",
+            "category": "Ramen Bar",
+            "quote": "Good flavor, a bit slow — but worth it!",
+            "color": "#E8547A",
+            "bg": "#FFE0E8",
+            "image": "images/culture/ramen-feliz.svg"
+          },
+          {
+            "name": "Mansion Matilde",
+            "flag": "🇪🇨",
+            "category": "Elegant Dining",
+            "quote": "Beautiful restored old house. Delicious food!",
+            "color": "#A78BFA",
+            "bg": "#EEE8FF",
+            "image": "images/culture/mansion-matilde.svg"
+          },
+          {
+            "name": "Sumo Brew Pub",
+            "flag": "🇺🇾",
+            "category": "Brewpub",
+            "quote": "Musical murals on the walls. Ping pong & pool!",
+            "color": "#0D8F87",
+            "bg": "#D5F2EF",
+            "image": "images/culture/sumo-brew-pub.svg"
+          }
         ]
       }
     },
     {
       "id": "taco-jul-aug",
       "type": "tacoDouble",
-      "indexEntry": { "icon": "🌮", "title": "Taco Winners", "subtitle": "Jul · Aug · Sep champions", "color": "#E8547A", "bg": "#FFE0E8" },
+      "indexEntry": {
+        "icon": "🌮",
+        "title": "Taco Winners",
+        "subtitle": "Jul · Aug · Sep champions",
+        "color": "#E8547A",
+        "bg": "#FFE0E8"
+      },
       "data": {
         "prizeText": "Each winner earns a **$50 Gift Card**! Congrats — keep the appreciation flowing! 🎉",
         "winners": [
-          { "month": "July", "year": 2025, "name": "Mercedes Buitron", "count": 17, "color": "#0D8F87", "bg": "#D5F2EF", "image": null },
-          { "month": "August", "year": 2025, "name": "Ale Arce", "count": 13, "color": "#F5761A", "bg": "#FFE8D6", "image": null }
+          {
+            "month": "July",
+            "year": 2025,
+            "name": "Mercedes Buitron",
+            "count": 17,
+            "color": "#0D8F87",
+            "bg": "#D5F2EF",
+            "image": "images/taco-jul-aug/mercedes.svg"
+          },
+          {
+            "month": "August",
+            "year": 2025,
+            "name": "Ale Arce",
+            "count": 13,
+            "color": "#F5761A",
+            "bg": "#FFE8D6",
+            "image": "images/taco-jul-aug/ale.svg"
+          }
         ]
       }
     },
@@ -103,19 +254,33 @@
       "data": {
         "month": "September",
         "year": 2025,
-        "winner": { "name": "Nico G.", "count": 14, "image": null },
+        "winner": {
+          "name": "Nico G.",
+          "count": 14,
+          "image": "images/taco-sep/nico.svg"
+        },
         "philosophy": {
           "quote": "There's no such thing as a wasteful taco. Ever.",
           "author": "Uma Japundza, CRO of HeyTaco",
           "body": "From 7 Habits of Highly Effective People: every relationship has an Emotional Bank Account. Positive interactions are deposits; broken promises are withdrawals.\n\nEvery taco you give is a deposit. Celebrating small wins keeps accounts in the green — especially for remote teams spread across the globe.",
-          "tags": ["💚 Build trust", "🌮 No wasteful tacos", "📈 Small wins matter"]
+          "tags": [
+            "💚 Build trust",
+            "🌮 No wasteful tacos",
+            "📈 Small wins matter"
+          ]
         }
       }
     },
     {
       "id": "welcome",
       "type": "welcome",
-      "indexEntry": { "icon": "👋", "title": "New Hire", "subtitle": "Welcome Leonel Zeballos", "color": "#C47D00", "bg": "#FEF5CC" },
+      "indexEntry": {
+        "icon": "👋",
+        "title": "New Hire",
+        "subtitle": "Welcome Leonel Zeballos",
+        "color": "#C47D00",
+        "bg": "#FEF5CC"
+      },
       "data": {
         "name": "Leonel",
         "fullName": "Leonel Zeballos",
@@ -123,42 +288,86 @@
         "bio": "Leonel lives and breathes technology — constantly exploring the latest trends and innovations. We're excited to see the energy, curiosity, and dedication he brings to every project.",
         "welcomeQuote": "Welcome to the TangoCode family! Wishing you exciting challenges, growth and success.",
         "funFacts": [
-          { "emoji": "⚽", "label": "San Lorenzo fan" },
-          { "emoji": "🎮", "label": "Competitive gaming" },
-          { "emoji": "💪", "label": "Gym enthusiast" },
-          { "emoji": "🎵", "label": "Music lover" },
-          { "emoji": "🐱", "label": "Cat dad — Lolo" },
-          { "emoji": "👨‍🍳", "label": "Learning to cook" }
+          {
+            "emoji": "⚽",
+            "label": "San Lorenzo fan"
+          },
+          {
+            "emoji": "🎮",
+            "label": "Competitive gaming"
+          },
+          {
+            "emoji": "💪",
+            "label": "Gym enthusiast"
+          },
+          {
+            "emoji": "🎵",
+            "label": "Music lover"
+          },
+          {
+            "emoji": "🐱",
+            "label": "Cat dad — Lolo"
+          },
+          {
+            "emoji": "👨‍🍳",
+            "label": "Learning to cook"
+          }
         ],
-        "image": null
+        "image": "images/welcome/leonel.svg"
       }
     },
     {
       "id": "l2t",
       "type": "teamUpdate",
-      "indexEntry": { "icon": "✈️", "title": "Team Updates", "subtitle": "L2T reunion in Evanston", "color": "#A78BFA", "bg": "#EEE8FF" },
+      "indexEntry": {
+        "icon": "✈️",
+        "title": "Team Updates",
+        "subtitle": "L2T reunion in Evanston",
+        "color": "#A78BFA",
+        "bg": "#EEE8FF"
+      },
       "data": {
         "title": "Reuniting with the L2T Team",
         "emoji": "✨",
         "quoteAuthor": "Seba",
         "quote": "After six years, we finally reunited with the L2T team! Veronica and I had the chance to visit their office and enjoy a wonderful dinner with Carrie, David Altman, Madeline, and David Weisman.\n\nGreat conversations, lots of laughs, and a reminder of how valuable these relationships are.",
-        "tags": ["📍 Evanston, IL", "📅 July 23rd", "🍽️ The Barn Steakhouse", "⏱️ 6 years!"],
-        "image": null,
+        "tags": [
+          "📍 Evanston, IL",
+          "📅 July 23rd",
+          "🍽️ The Barn Steakhouse",
+          "⏱️ 6 years!"
+        ],
+        "image": "images/l2t/main.svg",
         "imageLabel": "VERO & SEBA\nwith the L2T Team"
       }
     },
     {
       "id": "timeoff-andrea",
       "type": "timeOff",
-      "indexEntry": { "icon": "🌍", "title": "Time Off", "subtitle": "8 TangoCoders · 10+ destinations", "color": "#22D3A5", "bg": "#D8FAF1" },
+      "indexEntry": {
+        "icon": "🌍",
+        "title": "Time Off",
+        "subtitle": "8 TangoCoders · 10+ destinations",
+        "color": "#22D3A5",
+        "bg": "#D8FAF1"
+      },
       "data": {
         "person": "Andrea",
         "destination": "Indonesia 🇮🇩",
         "flag": "🇮🇩",
         "color": "#0891B2",
         "quote": "This July, one of my brothers flew to Indonesia to spend his vacation with me — 20 unforgettable days together. We explored islands, sailed on boats, snorkeled in crystal-clear waters, and rented motorbikes to discover hidden beaches. The most magical part: watching him try scuba diving for the very first time — he got fully certified!",
-        "facts": ["20 days", "Scuba certified 🤿", "Motorbike adventures"],
-        "images": [],
+        "facts": [
+          "20 days",
+          "Scuba certified 🤿",
+          "Motorbike adventures"
+        ],
+        "images": [
+          "images/timeoff-andrea/main.svg",
+          "images/timeoff-andrea/thumb-1.svg",
+          "images/timeoff-andrea/thumb-2.svg",
+          "images/timeoff-andrea/thumb-3.svg"
+        ],
         "photoCount": 4
       }
     },
@@ -171,8 +380,18 @@
         "flag": "🇪🇺",
         "color": "#7C3AED",
         "quote": "We spent two months traveling: Spain, Netherlands, Ireland, Scotland, France, Italy, and Portugal — all while working at TC! Mornings sightseeing, afternoons working. Two music festivals in Spain, giant waves at Nazare, a crazy ride near the Eiffel Tower, and a week in a campervan through Portugal. Favorite museums: Guinness & Heineken!",
-        "facts": ["2 months", "Work + Travel", "9 countries", "Campervan 🚐"],
-        "images": [],
+        "facts": [
+          "2 months",
+          "Work + Travel",
+          "9 countries",
+          "Campervan 🚐"
+        ],
+        "images": [
+          "images/timeoff-julieta/main.svg",
+          "images/timeoff-julieta/thumb-1.svg",
+          "images/timeoff-julieta/thumb-2.svg",
+          "images/timeoff-julieta/thumb-3.svg"
+        ],
         "photoCount": 4
       }
     },
@@ -185,8 +404,17 @@
         "flag": "🇮🇹",
         "color": "#DC2626",
         "quote": "My European journey began at Nico's place in Barcelona — a yearly tradition of padel, work, and great times. Then on to Paola, Italy — my second home — reuniting with my Italian family. The journey continued through Rome, Verona, Bologna, Florence, Venice, and the gem of the trip: the Amalfi Coast. Unforgettable European summer.",
-        "facts": ["Part 1 of 2", "Barcelona ➜ Italy", "Amalfi Coast 🌊"],
-        "images": [],
+        "facts": [
+          "Part 1 of 2",
+          "Barcelona ➜ Italy",
+          "Amalfi Coast 🌊"
+        ],
+        "images": [
+          "images/timeoff-alejo1/main.svg",
+          "images/timeoff-alejo1/thumb-1.svg",
+          "images/timeoff-alejo1/thumb-2.svg",
+          "images/timeoff-alejo1/thumb-3.svg"
+        ],
         "photoCount": 4
       }
     },
@@ -199,8 +427,18 @@
         "flag": "🇯🇵",
         "color": "#E11D48",
         "quote": "The second part took me to Japan — a destination I've dreamed of since childhood. Fascinated by samurai, temples, futuristic cities, incredible food, and manga. My favorite city: Osaka — vibrant, energetic, locals almost 'Latin' in their warmth. Shirakawa-go in the Japanese Alps was breathtaking. Tokyo is endless. Truly the best trip of my life.",
-        "facts": ["Part 2 of 2", "Osaka ❤️", "Shirakawa-go 🏔️", "Best trip ever! ✨"],
-        "images": [],
+        "facts": [
+          "Part 2 of 2",
+          "Osaka ❤️",
+          "Shirakawa-go 🏔️",
+          "Best trip ever! ✨"
+        ],
+        "images": [
+          "images/timeoff-alejo2/main.svg",
+          "images/timeoff-alejo2/thumb-1.svg",
+          "images/timeoff-alejo2/thumb-2.svg",
+          "images/timeoff-alejo2/thumb-3.svg"
+        ],
         "photoCount": 4
       }
     },
@@ -213,8 +451,18 @@
         "flag": "🇪🇸",
         "color": "#F59E0B",
         "quote": "In August, I traveled to Barcelona and Mallorca with my sister to escape Montevideo's harsh winter. As an architect, finally seeing Gaudi's work in person was incredible. In Mallorca (Playa de Muro), the water clarity was stunning — almost like the Caribbean. Super safe, quiet, family-friendly, and absolutely beautiful.",
-        "facts": ["August", "Gaudi 🏛️", "Playa de Muro", "Met Nico & Cande"],
-        "images": [],
+        "facts": [
+          "August",
+          "Gaudi 🏛️",
+          "Playa de Muro",
+          "Met Nico & Cande"
+        ],
+        "images": [
+          "images/timeoff-lucia/main.svg",
+          "images/timeoff-lucia/thumb-1.svg",
+          "images/timeoff-lucia/thumb-2.svg",
+          "images/timeoff-lucia/thumb-3.svg"
+        ],
         "photoCount": 4
       }
     },
@@ -227,8 +475,17 @@
         "flag": "🇺🇸",
         "color": "#06B6D4",
         "quote": "A super spontaneous trip! About a month before, I just booked flights to Miami for some relaxing beach days on my own. I rented a Camaro (I'm a big car lover!) and drove around to some really cool places. The beach was amazing, the weather was HOT. It was a week to unwind from the chaos of the year and just be thankful.",
-        "facts": ["Solo trip 💪", "Rented a Camaro 🚗", "100% recommend"],
-        "images": [],
+        "facts": [
+          "Solo trip 💪",
+          "Rented a Camaro 🚗",
+          "100% recommend"
+        ],
+        "images": [
+          "images/timeoff-flo/main.svg",
+          "images/timeoff-flo/thumb-1.svg",
+          "images/timeoff-flo/thumb-2.svg",
+          "images/timeoff-flo/thumb-3.svg"
+        ],
         "photoCount": 4
       }
     },
@@ -241,8 +498,17 @@
         "flag": "🇺🇸",
         "color": "#10B981",
         "quote": "Took the kids to the Zoo, the Seaquarium, the Safari, Miami Beach, and the Kids' Museum. Very, very HOT! We mountain people are not built for that heat. Best part for me: the newly opened Miami Micro Center — every PC builder's dream shop!",
-        "facts": ["Family of 5", "Zoo · Seaquarium", "Micro Center 🖥️"],
-        "images": [],
+        "facts": [
+          "Family of 5",
+          "Zoo · Seaquarium",
+          "Micro Center 🖥️"
+        ],
+        "images": [
+          "images/timeoff-juan/main.svg",
+          "images/timeoff-juan/thumb-1.svg",
+          "images/timeoff-juan/thumb-2.svg",
+          "images/timeoff-juan/thumb-3.svg"
+        ],
         "photoCount": 4
       }
     },
@@ -255,8 +521,17 @@
         "flag": "🇮🇹",
         "color": "#8B5CF6",
         "quote": "Our almost two-month European journey began in Venice and Sicily. From Sicily, we traveled to Siracusa, Noto, Taormina, San Vito Lo Capo, and Cefalu. The weather was absolutely wonderful and we ate a lot — basically pasta! The colors and architecture of Sicily were truly special.",
-        "facts": ["2 months Europe", "Siracusa · Taormina", "Pasta every day 🍝"],
-        "images": [],
+        "facts": [
+          "2 months Europe",
+          "Siracusa · Taormina",
+          "Pasta every day 🍝"
+        ],
+        "images": [
+          "images/timeoff-agustin/main.svg",
+          "images/timeoff-agustin/thumb-1.svg",
+          "images/timeoff-agustin/thumb-2.svg",
+          "images/timeoff-agustin/thumb-3.svg"
+        ],
         "photoCount": 4
       }
     },
@@ -269,8 +544,18 @@
         "flag": "🇬🇪🇹🇷",
         "color": "#F97316",
         "quote": "First trip: Georgia — amazing food, wine, beautiful nature, and welcoming people. Georgia is the first country to produce wine! Second trip: Turkey (Antalya) — my wife bought it as a birthday gift! I thought doing nothing for a week would bore me. I was SO wrong! Unlimited food, drinks, pool, sea, sun, spa, gym. I wanted to extend for one more week!",
-        "facts": ["2 trips", "Wine birthplace 🍷", "Antalya ☀️", "Birthday gift 🎁"],
-        "images": [],
+        "facts": [
+          "2 trips",
+          "Wine birthplace 🍷",
+          "Antalya ☀️",
+          "Birthday gift 🎁"
+        ],
+        "images": [
+          "images/timeoff-ash/main.svg",
+          "images/timeoff-ash/thumb-1.svg",
+          "images/timeoff-ash/thumb-2.svg",
+          "images/timeoff-ash/thumb-3.svg"
+        ],
         "photoCount": 5
       }
     },
@@ -279,7 +564,12 @@
       "type": "closing",
       "data": {
         "message": "Thanks to everyone who shared their stories, celebrated wins, and kept TangoCode culture alive — no matter the timezone.",
-        "closingPills": ["🚀 Hackathon", "🌮 Tacos", "✈️ Adventures", "👋 Welcome Leonel"]
+        "closingPills": [
+          "🚀 Hackathon",
+          "🌮 Tacos",
+          "✈️ Adventures",
+          "👋 Welcome Leonel"
+        ]
       }
     }
   ]

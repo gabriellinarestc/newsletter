@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="360" viewBox="0 0 400 360">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5761A"/>
+      <stop offset="100%" stop-color="#C45500"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="360" fill="url(#g)" rx="0"/>
+  <circle cx="60.0" cy="72.0" r="90.0" fill="white" opacity="0.08"/>
+  <circle cx="340.0" cy="288.0" r="108.0" fill="black" opacity="0.06"/>
+  <text x="200" y="172" text-anchor="middle" font-size="48">🌮</text>
+  <text x="200" y="204" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="white" opacity="0.9" letter-spacing="2">ALE ARCE</text>
+  <text x="200" y="218" text-anchor="middle" font-family="sans-serif" font-size="14" fill="white" opacity="0.7">AUGUST CHAMPION</text>
+</svg>
